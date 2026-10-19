@@ -1,20 +1,24 @@
 try:
-    ipk = float(input("Enter your IPK: "))
-    penghasilan = float(input("Enter your Penghasilan orang tua: "))
+    ipk = float(input("Masukkan IPK: "))
+    penghasilan = float(input("Masukkan penghasilan orang tua: "))
+    kategori = input("Pilih kategori beasiswa (penuh/parsial): ").lower()
 
     if not (0.0 <= ipk <= 4.0):
         print("Input tidak valid: IPK harus berada dalam rentang 0.0 sampai 4.0.")
     elif penghasilan < 0:
-        print("Input tidak valid: Penghasilan orang tua tidak boleh bernilai negatif.")
-    else:
-        if ipk >= 3.0 and penghasilan < 4000000:
-            print("Kamu lulus mendapatkan beasiswa.")
+        print("Input tidak valid: Penghasilan orang tua tidak boleh negatif.")
+    elif kategori not in ["penuh", "parsial"]:
+        print("Kategori beasiswa tidak valid.")
+    elif kategori == "penuh":
+        if ipk >= 3.5 and penghasilan < 4000000:
+            print("Kamu mendapatkan beasiswa penuh.")
         else:
-            if ipk < 3.0:
-                print("IPK kamu kurang dari 3.0.")
-            if penghasilan >= 4000000:
-                print("Penghasilan orang tua kamu terlalu tinggi.")
-            print("Kamu tidak memenuhi syarat untuk mendapatkan beasiswa.")
+            print("Kamu tidak memenuhi syarat beasiswa penuh.")
+    elif kategori == "parsial":
+        if ipk >= 3.0 and penghasilan < 4000000:
+            print("Kamu mendapatkan beasiswa parsial.")
+        else:
+            print("Kamu tidak memenuhi syarat beasiswa parsial.")
 
 except ValueError:
-    print("Input tidak valid: Harap masukkan nilai berupa angka.")
+    print("Input tidak valid: Harap masukkan nilai berupa angka untuk IPK dan penghasilan.")
